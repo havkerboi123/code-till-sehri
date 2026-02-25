@@ -36,15 +36,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setLoading(false);
       return;
     }
+    const a = auth;
     // Subscribe to auth state first so we don't miss the user when getRedirectResult completes
-    const unsub = onAuthStateChanged(auth, (u) => {
+    const unsub = onAuthStateChanged(a, (u) => {
       setUser(u ?? null);
       setLoading(false);
     });
     // Persist session so user stays logged in after redirect
-    setPersistence(auth, browserLocalPersistence).then(() => {
+    setPersistence(a, browserLocalPersistence).then(() => {
       // Process redirect result when returning from Google; auth state updates and listener above will fire
-      return getRedirectResult(auth);
+      return getRedirectResult(a);
     }).catch((err) => {
       const msg = err?.message ?? String(err);
       if (/unauthorized|auth\/unauthorized-domain|authorized.?domains/i.test(msg)) {
