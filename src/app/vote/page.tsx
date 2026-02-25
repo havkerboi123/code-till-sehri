@@ -83,7 +83,7 @@ export default function VotePage() {
 
   return (
     <div className="bg-grid min-h-[calc(100vh-4rem)]">
-      <div className="mx-auto max-w-2xl px-4 py-10 sm:py-14">
+      <div className="mx-auto max-w-4xl px-4 py-10 sm:py-14">
         <h1 className="text-2xl font-semibold text-slate-800">Vote on projects</h1>
         <p className="mt-1 text-sm text-slate-500">
           Rate each project 1–5. You can only vote once per project.
@@ -93,7 +93,7 @@ export default function VotePage() {
             No projects yet. Be the first to submit one.
           </p>
         ) : (
-          <ul className="mt-8 space-y-6">
+          <ul className="mt-8 space-y-8">
             {projects.map((project) => (
               <ProjectCard
                 key={project.id}

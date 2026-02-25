@@ -8,8 +8,8 @@ export default function Home() {
           Code till Sehri
         </h1>
         <p className="mt-2 text-lg font-medium text-primary-600">by GDG Live Pakistan</p>
-        <p className="mt-8 text-slate-600 leading-relaxed">
-          Build something, share it, and vote on others’ projects.
+        <p className="mt-8 text-xl font-medium text-slate-600 leading-relaxed">
+          ab hujaye faisala!
         </p>
         <div className="mt-12 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
           <Link

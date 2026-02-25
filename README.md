@@ -63,3 +63,21 @@ service cloud.firestore {
 ```
 
 You do not need Firebase Storage; project images are stored in Supabase.
+
+## Deploy on Vercel
+
+1. **Push your code to GitHub** (if you haven’t already).
+
+2. Go to [vercel.com](https://vercel.com) and sign in (e.g. with GitHub).
+
+3. Click **Add New…** → **Project**, then **Import** your repo.
+
+4. **Environment variables:** In the project settings (or during import), add the same vars you use in `.env.local`:
+   - All `NEXT_PUBLIC_FIREBASE_*` and `NEXT_PUBLIC_SUPABASE_*` keys.
+
+5. Click **Deploy**. Vercel will build and host the app and give you a URL.
+
+6. **Firebase auth (required for Sign in with Google):** In [Firebase Console](https://console.firebase.google.com/) → your project → **Authentication** → **Settings** (tab) → **Authorized domains**. Click **Add domain** and add:
+   - Your Vercel URL **without** `https://`, e.g. `your-app.vercel.app`
+   - Also add `vercel.app` if you use preview deployments (e.g. `your-app-xxx.vercel.app`)
+   Without this, "Sign in with Google" will not work in production.

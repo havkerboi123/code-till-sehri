@@ -13,15 +13,15 @@ export function ProjectCard({ project, currentScore, onVote }: Props) {
     project.voteCount > 0 ? (project.totalScore / project.voteCount).toFixed(1) : '—';
 
   return (
-    <li className="rounded-xl border border-slate-200/80 bg-white p-5 shadow-sm transition hover:shadow-md">
-      <div className="flex flex-col gap-4 sm:flex-row sm:gap-5">
+    <li className="rounded-xl border border-slate-200/80 bg-white p-6 shadow-sm transition hover:shadow-md sm:p-8">
+      <div className="flex flex-col gap-6 sm:flex-row sm:gap-8">
         {project.imageUrl && (
           project.liveUrl ? (
             <a
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="block h-36 w-full shrink-0 overflow-hidden rounded-lg bg-slate-100 sm:h-28 sm:w-40"
+              className="block h-52 w-full shrink-0 overflow-hidden rounded-xl bg-slate-100 sm:h-44 sm:w-72"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -31,7 +31,7 @@ export function ProjectCard({ project, currentScore, onVote }: Props) {
               />
             </a>
           ) : (
-            <div className="block h-36 w-full shrink-0 overflow-hidden rounded-lg bg-slate-100 sm:h-28 sm:w-40">
+            <div className="block h-52 w-full shrink-0 overflow-hidden rounded-xl bg-slate-100 sm:h-44 sm:w-72">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={project.imageUrl}
@@ -42,20 +42,20 @@ export function ProjectCard({ project, currentScore, onVote }: Props) {
           )
         )}
         <div className="min-w-0 flex-1">
-          <h2 className="font-semibold text-slate-800">{project.title}</h2>
-          <p className="mt-1.5 text-sm text-slate-600 line-clamp-2 leading-relaxed">
+          <h2 className="text-xl font-semibold text-slate-800 sm:text-2xl">{project.title}</h2>
+          <p className="mt-2 text-base text-slate-600 leading-relaxed line-clamp-3 sm:line-clamp-4">
             {project.description}
           </p>
           {project.motivation && (
-            <p className="mt-1 text-xs text-slate-500">Motivation: {project.motivation}</p>
+            <p className="mt-2 text-sm text-slate-500">Motivation: {project.motivation}</p>
           )}
-          <div className="mt-3 flex flex-wrap gap-3">
+          <div className="mt-4 flex flex-wrap gap-4">
             {project.liveUrl && (
               <a
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm font-medium text-primary-600 hover:text-primary-700 hover:underline"
+                className="text-base font-medium text-primary-600 hover:text-primary-700 hover:underline"
               >
                 Live link
               </a>
@@ -65,20 +65,20 @@ export function ProjectCard({ project, currentScore, onVote }: Props) {
                 href={project.videoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm font-medium text-primary-600 hover:text-primary-700 hover:underline"
+                className="text-base font-medium text-primary-600 hover:text-primary-700 hover:underline"
               >
                 Video
               </a>
             )}
           </div>
-          <p className="mt-2 text-sm text-slate-500">
+          <p className="mt-3 text-base text-slate-500">
             Score: <strong className="text-slate-700">{avg}</strong>/5
             <span className="text-slate-400"> ({project.voteCount} votes)</span>
           </p>
         </div>
       </div>
-      <div className="mt-5 border-t border-slate-100 pt-4">
-        <p className="mb-2 text-xs font-medium text-slate-500">Your vote (1–5)</p>
+      <div className="mt-6 border-t border-slate-100 pt-5">
+        <p className="mb-3 text-sm font-medium text-slate-500">Your vote (1–5)</p>
         <div className="flex gap-2">
           {[1, 2, 3, 4, 5].map((n) => (
             <button
@@ -86,7 +86,7 @@ export function ProjectCard({ project, currentScore, onVote }: Props) {
               type="button"
               onClick={() => onVote(n)}
               disabled={currentScore !== null}
-              className={`h-10 w-10 rounded-lg text-sm font-medium transition ${
+              className={`h-11 w-11 rounded-lg text-base font-medium transition sm:h-12 sm:w-12 ${
                 currentScore !== null
                   ? n === currentScore
                     ? 'bg-primary-600 text-white'
@@ -99,7 +99,7 @@ export function ProjectCard({ project, currentScore, onVote }: Props) {
           ))}
         </div>
         {currentScore !== null && (
-          <p className="mt-2 text-xs text-slate-400">You voted. Score cannot be changed.</p>
+          <p className="mt-2 text-sm text-slate-400">You voted. Score cannot be changed.</p>
         )}
       </div>
     </li>
