@@ -5,7 +5,7 @@ export default function Home() {
     <div className="bg-grid min-h-[calc(100vh-4rem)]">
       <div className="mx-auto max-w-2xl px-4 py-20 text-center sm:py-28">
         <h1 className="text-4xl font-bold tracking-tight text-slate-800 sm:text-5xl">
-          Code till Sehri
+          Vibe code till Sheri
         </h1>
         <p className="mt-2 text-lg font-medium text-primary-600">by GDG Live Pakistan</p>
         <p className="mt-8 text-xl font-medium text-slate-600 leading-relaxed">
@@ -24,6 +24,16 @@ export default function Home() {
           >
             Vote on projects
           </Link>
+        </div>
+        <div className="mt-14 flex justify-center">
+          <div className="logo-float-glow rounded-2xl p-2">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="https://media.licdn.com/dms/image/v2/C4D0BAQEBI8qvd8qCfA/company-logo_200_200/company-logo_200_200/0/1644170232622?e=1773878400&v=beta&t=Ion89awgSKcSe2c1RkmZ0hyem5wLZz3Os1YjQpqWLEg"
+              alt="GDG Live Pakistan"
+              className="h-[320px] w-[320px] max-w-full rounded-xl object-contain sm:h-[400px] sm:w-[400px]"
+            />
+          </div>
         </div>
       </div>
     </div>

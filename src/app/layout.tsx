@@ -12,8 +12,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: 'Code till Sehri by GDG Live Pakistan',
-  description: 'Build something, share it, and vote on projects from Code till Sehri',
+  title: 'Vibe code till Sheri by GDG Live Pakistan',
+  description: 'Build something, share it, and vote on projects from Vibe code till Sheri',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

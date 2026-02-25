@@ -13,3 +13,17 @@ body {
     linear-gradient(to bottom, rgb(226 232 240 / 0.4) 1px, transparent 1px);
   background-size: 24px 24px;
 }
+
+/* Floating logo with glow */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.logo-float-glow {
+  animation: float 4s ease-in-out infinite;
+  box-shadow:
+    0 0 40px 10px rgb(99 102 241 / 0.25),
+    0 0 80px 20px rgb(99 102 241 / 0.15),
+    0 25px 50px -12px rgb(0 0 0 / 0.15);
+}

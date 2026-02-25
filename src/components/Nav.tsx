@@ -23,10 +23,10 @@ export function Nav() {
       <nav className="sticky top-0 z-10 border-b border-slate-200/80 bg-white/90 backdrop-blur-sm">
         <div className="mx-auto flex max-w-4xl items-center justify-between gap-4 px-4 py-3">
           <Link href="/" className="hover:opacity-90">
-          <span className="text-base font-semibold tracking-tight text-slate-800">
-            Code till Sehri
-            <span className="block text-xs font-normal text-slate-500">by GDG Live Pakistan</span>
-          </span>
+            <span className="text-base font-semibold tracking-tight text-slate-800">
+              Vibe code till Sheri
+              <span className="block text-xs font-normal text-slate-500">by GDG Live Pakistan</span>
+            </span>
           </Link>
           <div className="flex items-center gap-3 sm:gap-5">
           <Link

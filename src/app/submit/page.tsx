@@ -10,7 +10,6 @@ export default function SubmitPage() {
   const router = useRouter();
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
-  const [imageUploadFailed, setImageUploadFailed] = useState(false);
   const [form, setForm] = useState({
     title: '',
     description: '',
@@ -39,17 +38,19 @@ export default function SubmitPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
-    setImageUploadFailed(false);
+    if (!imageFile) {
+      setError('Please add an image for your project.');
+      return;
+    }
     setBusy(true);
     try {
-      let imageUrl = '';
-      if (imageFile) {
-        try {
-          imageUrl = await uploadImage(imageFile, user.uid);
-        } catch (uploadErr) {
-          // Submit without image so the user is not blocked
-          setImageUploadFailed(true);
-        }
+      let imageUrl: string;
+      try {
+        imageUrl = await uploadImage(imageFile, user.uid);
+      } catch (uploadErr) {
+        setError('Image upload failed. Try a smaller image or check your connection.');
+        setBusy(false);
+        return;
       }
       await createProject({
         title: form.title.trim(),
@@ -62,9 +63,6 @@ export default function SubmitPage() {
         userName: user.displayName ?? '',
         userEmail: user.email ?? '',
       });
-      if (imageUploadFailed) {
-        await new Promise((r) => setTimeout(r, 1500));
-      }
       router.push('/vote');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong');
@@ -80,16 +78,11 @@ export default function SubmitPage() {
     <div className="bg-grid min-h-[calc(100vh-4rem)]">
       <div className="mx-auto max-w-lg px-4 py-10 sm:py-14">
         <h1 className="text-2xl font-semibold text-slate-800">Submit a project</h1>
-        <p className="mt-1 text-sm text-slate-500">Share what you built for Code till Sehri.</p>
+        <p className="mt-1 text-sm text-slate-500">Share what you built for Vibe code till Sheri. Image is required.</p>
         <form onSubmit={handleSubmit} className="mt-8 space-y-5">
           {error && (
             <p className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
               {error}
-            </p>
-          )}
-          {imageUploadFailed && (
-            <p className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
-              Image could not be uploaded (e.g. network or size). Submitting without image.
             </p>
           )}
           <div>
@@ -148,12 +141,13 @@ export default function SubmitPage() {
           </div>
           <div>
             <label htmlFor="image" className="block text-sm font-medium text-slate-700">
-              Image
+              Image <span className="text-red-500">*</span>
             </label>
             <input
               id="image"
               type="file"
               accept="image/*"
+              required
               onChange={(e) => setImageFile(e.target.files?.[0] ?? null)}
               className="mt-1.5 w-full text-sm text-slate-600 file:mr-3 file:rounded-lg file:border-0 file:bg-primary-50 file:px-4 file:py-2 file:text-sm file:font-medium file:text-primary-700"
             />
